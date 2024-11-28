@@ -1,0 +1,19 @@
+{
+    "name": "utils/zwan",
+    "authors": [
+    ],
+    "require": {
+        "php": "^7.0 || ^8.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "files": [
+            "src/helper/helper.php"
+        ],
+        "psr-4": {
+            "ZWan\\": "src"
+        }
+    }
+}
