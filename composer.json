@@ -1,19 +1,20 @@
 {
-    "name": "zwan/php-utils",
-    "authors": [
+  "name": "zwan/php-utils",
+  "authors": [
+  ],
+  "require": {
+    "php": "^7.0 || ^8.0",
+    "ext-json": "*",
+    "ext-redis": "*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "files": [
+      "src/helper/helper.php"
     ],
-    "require": {
-        "php": "^7.0 || ^8.0",
-        "ext-json": "*"
-    },
-    "require-dev": {
-    },
-    "autoload": {
-        "files": [
-            "src/helper/helper.php"
-        ],
-        "psr-4": {
-            "ZWan\\": "src"
-        }
+    "psr-4": {
+      "ZWan\\": "src"
     }
+  }
 }
