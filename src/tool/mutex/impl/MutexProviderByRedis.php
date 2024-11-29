@@ -2,53 +2,49 @@
 
 namespace ZWan\Tool\Mutex\Impl;
 
-use ZWan\Tool\Mutex\Exception\MutexException;
+use ZWan\tool\mutex\application\RedisApplication;
 use ZWan\Tool\Mutex\MutexProviderInterface;
 
-class RedisMutex implements MutexProviderInterface
+class MutexProviderByRedis implements MutexProviderInterface
 {
     /**
      * redis实例
      *
      * @var null
      */
-    private static $redisInstance = null;
+    private static $redisApplication = null;
+
+    /**
+     * @var MutexProviderByRedis|null
+     */
+    private static $mutexProvider = null;
 
     /**
      * 构造函数初始化Redis
-     *
-     * @param $redis
      */
-    private function __construct($redis)
+    private function __construct()
     {
-        if ($redis) {
-            self::$redisInstance = $redis;
-        }
+        self::$redisApplication = RedisApplication::getRedis();
+        self::$mutexProvider = new self();
     }
 
     /**
-     * 创建 RedisMutex
+     * 创建 MutexByRedis
      *
-     * @param $redis
-     * @return RedisMutex
+     * @return MutexProviderByRedis
      */
-    public static function getRedisMutex($redis = null): RedisMutex
+    public static function getMutexProvider(): MutexProviderInterface
     {
-        if (self::$redisInstance === null && $redis = null) {
-            throw new MutexException("Redis instance not defined");
+        if (self::$mutexProvider === null) {
+            new self();
         }
-
-        if (self::$redisInstance === null) {
-            self::$redisInstance = new self($redis);
-        }
-        return self::$redisInstance;
+        return self::$mutexProvider;
     }
 
     public static function getLock(string $lockName, int $expireTime = 86400)
     {
-        $redis = self::$redisInstance;
         $password = self::generatePassword();
-        if ($redis->set($lockName, $password, $expireTime)) {
+        if (self::$redisApplication->set($lockName, $password, $expireTime)) {
             return false;
         }
         return $password;
@@ -56,10 +52,9 @@ class RedisMutex implements MutexProviderInterface
 
     public static function unLock(string $lockName, string $password): bool
     {
-        $redis = self::$redisInstance;
-        $result = $redis->get($lockName);
+        $result = self::$redisApplication->get($lockName);
         if ($result === $password) {
-            $redis->del($lockName);
+            self::$redisApplication->del($lockName);
             return true;
         }
         return false;

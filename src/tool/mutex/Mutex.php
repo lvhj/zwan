@@ -3,7 +3,7 @@
 namespace ZWan\Tool\Mutex;
 
 use ZWan\Tool\Mutex\Exception\MutexException;
-use ZWan\Tool\Mutex\Impl\RedisMutex;
+use ZWan\Tool\Mutex\Impl\MutexProviderByRedis;
 
 class Mutex
 {
@@ -20,7 +20,7 @@ class Mutex
     /**
      * 互斥锁
      *
-     * @var RedisMutex|MutexProviderInterface|null
+     * @var MutexProviderByRedis|MutexProviderInterface|null
      */
     private static $mutexProvider = null;
 
@@ -30,10 +30,17 @@ class Mutex
      */
     private function __construct(string $lockName, MutexProviderInterface $mutexProvider = null)
     {
-        if (self::$mutexProvider === null) {
-            self::$mutexProvider = $mutexProvider === null ? RedisMutex::getRedisMutex() : $mutexProvider;
-        }
         $this->lockName = $lockName;
+    }
+
+    public static function register(MutexProviderInterface $mutexProvider = null)
+    {
+        if (self::$mutexProvider === null) {
+            self::$mutexProvider =
+                ($mutexProvider === null ? MutexProviderByRedis::getMutexProvider() : $mutexProvider::getMutexProvider());
+        } else {
+            throw new MutexException("mutexProvider has already been registered");
+        }
     }
 
     public static function clear()
@@ -70,7 +77,7 @@ class Mutex
                 $this->unlock();
             }
         } else {
-            throw new MutexException("{$this->lockName} lock fail, try it later", 0xF0106801);
+            throw new MutexException("{$this->lockName} lock fail, try it later");
         }
     }
 
