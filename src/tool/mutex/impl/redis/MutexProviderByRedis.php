@@ -26,7 +26,6 @@ class MutexProviderByRedis implements MutexProviderInterface
     private function __construct()
     {
         self::$redisApplication = RedisApplication::getRedis();
-        self::$mutexProvider = new self();
     }
 
     /**
@@ -37,7 +36,7 @@ class MutexProviderByRedis implements MutexProviderInterface
     public static function getMutexProvider(): MutexProviderInterface
     {
         if (self::$mutexProvider === null) {
-            new self();
+            self::$mutexProvider = new self();
         }
         return self::$mutexProvider;
     }
@@ -45,7 +44,7 @@ class MutexProviderByRedis implements MutexProviderInterface
     public static function getLock(string $lockName, int $expireTime = 86400)
     {
         $password = self::generatePassword();
-        if (self::$redisApplication->set($lockName, $password, $expireTime)) {
+        if (!self::$redisApplication->set($lockName, $password, array('nx', 'ex' => $expireTime))) {
             return false;
         }
         return $password;
@@ -54,6 +53,7 @@ class MutexProviderByRedis implements MutexProviderInterface
     public static function unLock(string $lockName, string $password): bool
     {
         $result = self::$redisApplication->get($lockName);
+
         if ($result === $password) {
             self::$redisApplication->del($lockName);
             return true;

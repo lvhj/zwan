@@ -37,7 +37,7 @@ class Mutex
     {
         if (self::$mutexProvider === null) {
             self::$mutexProvider =
-                ($mutexProvider === null ? MutexProviderByRedis::getMutexProvider() : $mutexProvider::getMutexProvider());
+                ($mutexProvider === null ? MutexProviderByRedis::getMutexProvider() : $mutexProvider);
         } else {
             throw new MutexException("mutexProvider has already been registered");
         }
