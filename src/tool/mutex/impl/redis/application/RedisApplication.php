@@ -1,8 +1,8 @@
 <?php
 
-namespace ZWan\tool\mutex\application;
+namespace ZWan\Tool\Mutex\Impl\Redis\Application;
 
-use ZWan\tool\common\ProviderInterface;
+use ZWan\Tool\Common\ProviderInterface;
 use ZWan\Tool\Mutex\Exception\MutexException;
 
 class RedisApplication implements ProviderInterface

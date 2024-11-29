@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\tool\common;
+namespace ZWan\Tool\Common;
 
 interface ProviderInterface
 {

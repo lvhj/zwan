@@ -3,7 +3,7 @@
 namespace ZWan\Tool\Mutex;
 
 use ZWan\Tool\Mutex\Exception\MutexException;
-use ZWan\Tool\Mutex\Impl\MutexProviderByRedis;
+use ZWan\tool\mutex\impl\redis\MutexProviderByRedis;
 
 class Mutex
 {
