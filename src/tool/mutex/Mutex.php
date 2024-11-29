@@ -33,6 +33,10 @@ class Mutex
         $this->lockName = $lockName;
     }
 
+    /**
+     * @param MutexProviderInterface|null $mutexProvider
+     * @return void
+     */
     public static function register(MutexProviderInterface $mutexProvider = null)
     {
         if (self::$mutexProvider === null) {
@@ -43,6 +47,9 @@ class Mutex
         }
     }
 
+    /**
+     * @return void
+     */
     public static function clear()
     {
         self::$mutexProvider = null;

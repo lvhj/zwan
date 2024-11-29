@@ -41,6 +41,13 @@ class MutexProviderByRedis implements MutexProviderInterface
         return self::$mutexProvider;
     }
 
+    /**
+     * 加锁
+     *
+     * @param string $lockName
+     * @param int $expireTime
+     * @return false|string
+     */
     public static function getLock(string $lockName, int $expireTime = 86400)
     {
         $password = self::generatePassword();
@@ -50,6 +57,13 @@ class MutexProviderByRedis implements MutexProviderInterface
         return $password;
     }
 
+    /**
+     * 解锁
+     *
+     * @param string $lockName
+     * @param string $password
+     * @return bool
+     */
     public static function unLock(string $lockName, string $password): bool
     {
         $result = self::$redisApplication->get($lockName);
@@ -61,7 +75,12 @@ class MutexProviderByRedis implements MutexProviderInterface
         return false;
     }
 
-    // 生成唯一的 TraceId
+    /**
+     * 生成解锁密钥
+     *
+     * @return string
+     * @throws
+     */
     private static function generatePassword(): string
     {
         // 获取当前时间戳，确保一定的唯一性
