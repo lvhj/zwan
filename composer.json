@@ -1,7 +1,6 @@
 {
   "name": "zwan/php-utils",
   "license": "MIT",
-  "type": "project",
   "authors": [
   ],
   "require": {
