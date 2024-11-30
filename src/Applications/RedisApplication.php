@@ -2,7 +2,6 @@
 
 namespace ZWan\Applications;
 
-use ZWan\Tool\Mutex\MutexExceptions\MutexException;
 use ZWan\Traits\SingletonTrait;
 
 class RedisApplication
@@ -41,7 +40,7 @@ class RedisApplication
     {
         if (self::$instance === null) {
             if ($redis === null) {
-                throw new MutexException("Redis instance must be provided for the first time.");
+                throw new MutexExcepti("Redis instance must be provided for the first time.");
             }
             self::$instance = new self($redis);
         }

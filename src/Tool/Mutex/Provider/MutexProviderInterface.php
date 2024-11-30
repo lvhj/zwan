@@ -5,11 +5,6 @@ namespace ZWan\Tool\Mutex\Provider;
 interface MutexProviderInterface
 {
     /**
-     * @return MutexProviderInterface
-     */
-    public static function getMutexProvider(): MutexProviderInterface;
-
-    /**
      * @param string $lockName
      * @param int $expireTime
      * @return int|bool
