@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\Tool\Mutex;
+namespace ZWan\Tool\Mutex\Provider;
 
 interface MutexProviderInterface
 {

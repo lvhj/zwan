@@ -1,12 +1,12 @@
 <?php
 
-namespace ZWan\Tool\Mutex\Impl\Redis;
+namespace ZWan\Tool\Mutex\Provider\Impl;
 
 
-use ZWan\Tool\Mutex\Impl\Redis\Application\RedisApplication;
-use ZWan\Tool\Mutex\MutexProviderInterface;
+use ZWan\Applications\RedisApplication;
+use ZWan\Tool\Mutex\Provider\MutexProviderInterface;
 
-class MutexProviderByRedis implements MutexProviderInterface
+class RedisProvider implements MutexProviderInterface
 {
     /**
      * redis实例
@@ -16,7 +16,7 @@ class MutexProviderByRedis implements MutexProviderInterface
     private static $redisApplication = null;
 
     /**
-     * @var MutexProviderByRedis|null
+     * @var RedisProvider|null
      */
     private static $mutexProvider = null;
 
@@ -31,7 +31,7 @@ class MutexProviderByRedis implements MutexProviderInterface
     /**
      * 创建 MutexByRedis
      *
-     * @return MutexProviderByRedis
+     * @return RedisProvider
      */
     public static function getMutexProvider(): MutexProviderInterface
     {
@@ -94,23 +94,5 @@ class MutexProviderByRedis implements MutexProviderInterface
 
         // 组合成traceId
         return sprintf('%s-%s-%s', $hostname, $timestamp, $random);
-    }
-
-    /**
-     * 禁止克隆
-     *
-     * @return void
-     */
-    private function __clone()
-    {
-    }
-
-    /**
-     * 禁止反序列化
-     *
-     * @return void
-     */
-    private function __wakeup()
-    {
     }
 }

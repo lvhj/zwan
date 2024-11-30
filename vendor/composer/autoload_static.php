@@ -6,9 +6,34 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit5b16528999c1beb466aaefe9037c5b65
 {
+    public static $files = array (
+        '8b4132b5cee1c882b11ef418dc35e58a' => __DIR__ . '/../..' . '/src/helper/helper.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'ZWan\\' => 5,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'ZWan\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$classMap;
 
         }, null, ClassLoader::class);
     }

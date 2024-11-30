@@ -1,5 +1,7 @@
 {
   "name": "zwan/php-utils",
+  "license": "MIT",
+  "type": "project",
   "authors": [
   ],
   "require": {
@@ -11,10 +13,10 @@
   },
   "autoload": {
     "files": [
-      "src/helper/helper.php"
+      "src/Helper/helper.php"
     ],
     "psr-4": {
-      "ZWan\\": "src"
+      "ZWan\\": "src/"
     }
   }
 }

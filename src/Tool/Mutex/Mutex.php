@@ -2,33 +2,33 @@
 
 namespace ZWan\Tool\Mutex;
 
-use ZWan\Tool\Mutex\Exception\MutexException;
-use ZWan\tool\mutex\impl\redis\MutexProviderByRedis;
+use ZWan\Exceptions\ZWanException;
+use ZWan\Tool\Mutex\MutexExceptions\MutexException;
+use ZWan\Tool\Mutex\Provider\Impl\RedisProvider;
+use ZWan\Tool\Mutex\Provider\MutexProviderInterface;
 
 class Mutex
 {
     /**
+     * 互斥锁
+     *
+     * @var RedisProvider|MutexProviderInterface|null
+     */
+    private static $mutexProvider = null;
+    /**
      * @var string
      */
     private $lockName;
-
     /**
      * @var null|int|bool
      */
     private $lockPassword = null;
 
     /**
-     * 互斥锁
-     *
-     * @var MutexProviderByRedis|MutexProviderInterface|null
-     */
-    private static $mutexProvider = null;
-
-    /**
      * @param string $lockName
      * @param MutexProviderInterface|null $mutexProvider
      */
-    private function __construct(string $lockName, MutexProviderInterface $mutexProvider = null)
+    private function __construct(string $lockName)
     {
         $this->lockName = $lockName;
     }
@@ -40,8 +40,7 @@ class Mutex
     public static function register(MutexProviderInterface $mutexProvider = null)
     {
         if (self::$mutexProvider === null) {
-            self::$mutexProvider =
-                ($mutexProvider === null ? MutexProviderByRedis::getMutexProvider() : $mutexProvider);
+            self::$mutexProvider = $mutexProvider ?? RedisProvider::getMutexProvider();
         } else {
             throw new MutexException("mutexProvider has already been registered");
         }
@@ -56,22 +55,11 @@ class Mutex
     }
 
     /**
-     * 获取一个锁
-     * @param string $lockName
-     * @param MutexProviderInterface|null $mutexProvider
-     * @return Mutex
-     */
-    public static function getLock(string $lockName, MutexProviderInterface $mutexProvider = null): Mutex
-    {
-        return new Mutex($lockName, $mutexProvider);
-    }
-
-    /**
-     * 对接下来的调用进行锁定
-     * @param callable $callback
-     * @param int $expireTime
+     * 执行加锁操作并执行回调
+     * @param callable $callback 执行的回调函数
+     * @param int $expireTime 锁的过期时间，单位秒
      * @return mixed
-     * @throws
+     * @throws MutexException|\Throwable
      */
     public function synchronized(callable $callback, int $expireTime = 600)
     {
@@ -100,8 +88,21 @@ class Mutex
             return false;
         }
 
+        throw ZWanException::ORDER_PREFERENCE_INFO_NOT_FOUND();
+
         $this->lockPassword = $lockPassword;
         return true;
+    }
+
+    /**
+     * 获取一个锁
+     * @param string $lockName
+     * @param MutexProviderInterface|null $mutexProvider
+     * @return Mutex
+     */
+    public static function getLock(string $lockName): Mutex
+    {
+        return new self($lockName);
     }
 
     /**
