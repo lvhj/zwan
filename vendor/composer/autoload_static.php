@@ -15,6 +15,16 @@ class ComposerStaticInit5b16528999c1beb466aaefe9037c5b65
         array (
             'ZWan\\' => 5,
         ),
+        'P' => 
+        array (
+            'Psr\\Cache\\' => 10,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Deprecations\\' => 22,
+            'Doctrine\\Common\\Lexer\\' => 22,
+            'Doctrine\\Common\\Annotations\\' => 28,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -22,10 +32,22 @@ class ComposerStaticInit5b16528999c1beb466aaefe9037c5b65
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-    );
-
-    public static $classMap = array (
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
+        ),
+        'Doctrine\\Common\\Lexer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/lexer/src',
+        ),
+        'Doctrine\\Common\\Annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -33,7 +55,6 @@ class ComposerStaticInit5b16528999c1beb466aaefe9037c5b65
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5b16528999c1beb466aaefe9037c5b65::$classMap;
 
         }, null, ClassLoader::class);
     }

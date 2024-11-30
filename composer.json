@@ -6,7 +6,8 @@
   ],
   "require": {
     "php": "^7.0 || ^8.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "doctrine/annotations": "2.0.2"
   },
   "require-dev": {
   },
