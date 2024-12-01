@@ -11,7 +11,6 @@ class Mutex
      * @var string
      */
     private $lockName;
-
     /**
      * @var null|int|bool
      */
@@ -36,17 +35,27 @@ class Mutex
      * @param MutexProviderInterface|null $mutexProvider
      * @return void
      */
-    public static function register(MutexProviderInterface $mutexProvider)
+    public static function setMutexProvider(MutexProviderInterface $mutexProvider)
     {
         if (self::$mutexProvider === null) {
             self::$mutexProvider = $mutexProvider;
         } else {
-            throw new MutexException("mutexProvider has already been registered");
+            throw MutexException::MUTEX_PROVIDEDR_HAS_BEEN_REGISTERED();
         }
     }
 
     /**
-     * 执行加锁操作并执行回调
+     * 获取互斥锁
+     * @param string $lockName
+     * @return Mutex
+     */
+    public static function getLock(string $lockName): Mutex
+    {
+        return new self($lockName);
+    }
+
+    /**
+     * 执行加锁并执行回调函数
      *
      * @param callable $callback 执行的回调函数
      * @param int $expireTime 锁的过期时间，单位秒
@@ -84,28 +93,18 @@ class Mutex
     }
 
     /**
-     * 获取一个锁
-     * @param string $lockName
-     * @return Mutex
-     */
-    public static function getLock(string $lockName): Mutex
-    {
-        return new self($lockName);
-    }
-
-    /**
      * 对当前操作进行解锁
      */
     public function unlock()
     {
         if ($this->lockPassword === null) {
-            throw new MutexException("try to unlock of unlocked Mutex");
+            throw MutexException::TRY_TO_UNLOCK_OF_UNLOCKED_MUTEX();
         }
 
         if (self::$mutexProvider::unlock($this->lockName, $this->lockPassword)) {
             $this->lockPassword = null;
         } else {
-            throw new MutexException("try to unlock of expired Mutex");
+            throw MutexException::TRY_TO_UNLOCK_OF_EXPIRED_MUTEX();
         }
     }
 }

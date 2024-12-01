@@ -3,11 +3,11 @@
     public function testAction()
     {
         try {
-            $redis = $this->di->get('redisM');
-            RedisApplication::register($redis);
-            Mutex::register(MutexProviderByRedis::getMutexProvider());
-            $result = Mutex::getLock('zshi:test:800')->synchronized(function () {
-                return 123;
+            Mutex::register(RedisMutexProvider::getMutexProvider($redis));
+            $lockName = 'zshi:123' . $id;
+            Mutex::getLock($lockName)->synchronized(function () {
+                ddd(1234);
+                return true;
             }, 1000);
         } catch (\Throwable $e) {
         }

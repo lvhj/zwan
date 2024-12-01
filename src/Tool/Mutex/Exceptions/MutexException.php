@@ -5,13 +5,23 @@ namespace ZWan\Tool\Mutex\Exceptions;
 use ZWan\Exceptions\ZWanException;
 
 /**
- * 项目ID:A26
- * 异常类目ID:016
+ * 项目ID:A01
+ * 异常类目ID:001
  * 异常类目ID:001
  *
- * 错误号范围:0xA26016001-0xA26016FFF
+ * 错误号范围:0xA001001001-0xA001001FFF
  *
- * @method static MutexException ORDER_PREFERENCE_INFO_NOT_FOUND($codeOrText = 0xA26016001, $text = 'first exception')
+ * @exception-text 互斥锁不能为空
+ * @method static MutexException MUTEX_PROVIDEDR_CANNOT_BE_EMPTY($codeOrText = 0xA001001001, $text = 'mutex provider cannot be empty')
+ *
+ * @exception-text 尝试解锁已解锁的互斥锁
+ * @method static MutexException TRY_TO_UNLOCK_OF_UNLOCKED_MUTEX($codeOrText = 0xA001001002, $text = 'try to unlock of unlocked Mutex')
+ *
+ * @exception-text 尝试解锁已过期的互斥锁
+ * @method static MutexException TRY_TO_UNLOCK_OF_EXPIRED_MUTEX($codeOrText = 0xA001001003, $text = 'try to unlock of expired Mutex')
+ *
+ * @exception-text 互斥锁不能为空
+ * @method static MutexException MUTEX_PROVIDEDR_HAS_BEEN_REGISTERED($codeOrText = 0xA001001001, $text = 'mutex provider has been registered')
  */
 class MutexException extends ZWanException
 {
