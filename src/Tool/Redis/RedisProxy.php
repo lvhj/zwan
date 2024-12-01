@@ -13,6 +13,9 @@ class RedisProxy
         $this->redis = $redis;
     }
 
+    /**
+     * @throws
+     */
     public function __call($method, $args)
     {
         if (method_exists($this->redis, $method)) {
