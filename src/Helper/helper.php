@@ -23,6 +23,7 @@ if (!function_exists('ddPrint')) {
             if ($arg instanceof Throwable) {
                 header('Content-type: application/xml;charset=utf-8;');
                 echo $arg->getMessage() . PHP_EOL;
+                echo PHP_EOL;
                 echo $arg->getFile() . '(' . $arg->getLine() . ')' . PHP_EOL;
                 echo $arg->getTraceAsString() . PHP_EOL;
                 exit();

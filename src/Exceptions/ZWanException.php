@@ -11,7 +11,8 @@ class ZWanException extends \RuntimeException
      * @param $arguments
      * @return static
      */
-    public static function __callStatic ($name, $arguments) {
+    public static function __callStatic($name, $arguments)
+    {
         static $exceptionMap = [];
         static $regex = '/@method[ ]*static[ ]*([A-Z0-9a-z_]?[A-Za-z0-9_]*)[ ]*([A-Z0-9_]*)[ ]*\([ ]*\$(code|codeOrText)[ ]*=[ ]*(0x[0-9A-F]{9})[ ]*,[ ]*\$(text)[ ]*=[ ]*[\'"](.*)[\'"][ ]*\)/m';
 
@@ -19,7 +20,6 @@ class ZWanException extends \RuntimeException
         $curExceptionMap = $exceptionMap[$className] ?? [];
         if (!isset($exceptionMap[$className])) {
             $rClass = new \ReflectionClass(static::class);
-
             foreach (explode("\n", $rClass->getDocComment()) as $line) {
                 $line = trim($line, " \t\n\r\0\x0B*");
 

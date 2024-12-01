@@ -8,8 +8,6 @@
     "ext-json": "*",
     "doctrine/annotations": "2.0.2"
   },
-  "require-dev": {
-  },
   "autoload": {
     "files": [
       "src/Helper/helper.php"
