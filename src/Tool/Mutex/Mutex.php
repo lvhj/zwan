@@ -57,6 +57,7 @@ class Mutex
     /**
      * 执行加锁并执行回调函数
      *
+     *
      * @param callable $callback 执行的回调函数
      * @param int $expireTime 锁的过期时间，单位秒
      * @return mixed

@@ -17,4 +17,5 @@ interface MutexProviderInterface
      * @return bool
      */
     public static function unLock(string $lockName, string $password): bool;
+    
 }
