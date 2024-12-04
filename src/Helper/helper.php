@@ -32,8 +32,7 @@ if (!function_exists('ddPrint')) {
             } else if (is_string($arg) || is_numeric($arg)) {
                 echo $arg;
             } elseif (is_bool($arg)) {
-                $temp = $arg ? "TRUE" : "FALSE";
-                echo $temp;
+                echo $arg ? "true" : "false";
             } else if (is_null($arg)) {
                 echo 'NULL';
             } else {
