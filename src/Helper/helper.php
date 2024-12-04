@@ -4,6 +4,7 @@ if (!function_exists('dd')) {
     function dd(...$args)
     {
         ddPrint(...$args);
+        echo PHP_EOL;
         exit();
     }
 }
@@ -12,6 +13,7 @@ if (!function_exists('ddd')) {
     function ddd(...$args)
     {
         ddPrint(...$args);
+        echo PHP_EOL;
     }
 }
 
@@ -39,7 +41,6 @@ if (!function_exists('ddPrint')) {
             } else {
                 var_dump($arg);
             }
-            echo PHP_EOL;
         }
     }
 }
