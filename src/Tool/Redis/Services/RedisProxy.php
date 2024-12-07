@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\Tool\Redis;
+namespace ZWan\Tool\Redis\Services;
 
 class RedisProxy
 {
