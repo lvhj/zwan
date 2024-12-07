@@ -4,6 +4,7 @@ namespace ZWan\Tool\Mutex;
 
 use ZWan\Tool\Mutex\Exceptions\MutexException;
 use ZWan\Tool\Mutex\Provider\MutexProviderInterface;
+use ZWan\Tool\Mutex\Provider\RedisMutexProvider;
 
 class Mutex
 {
@@ -28,20 +29,8 @@ class Mutex
      */
     private function __construct(string $lockName)
     {
+        self::$mutexProvider = RedisMutexProvider::class;
         $this->lockName = $lockName;
-    }
-
-    /**
-     * @param MutexProviderInterface|null $mutexProvider
-     * @return void
-     */
-    public static function setMutexProvider(MutexProviderInterface $mutexProvider)
-    {
-        if (self::$mutexProvider === null) {
-            self::$mutexProvider = $mutexProvider;
-        } else {
-            throw MutexException::MUTEX_PROVIDEDR_HAS_BEEN_REGISTERED();
-        }
     }
 
     /**

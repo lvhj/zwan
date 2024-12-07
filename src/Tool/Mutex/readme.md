@@ -1,15 +1,15 @@
-使用示例
+### 使用示例
 
-    public function testAction()
-    {
-        try {
-            Mutex::register(RedisMutexProvider::getMutexProvider($redis));
-            $lockName = 'zshi:123' . $id;
-            Mutex::getLock($lockName)->synchronized(function () {
-                ddd(1234);
-                return true;
-            }, 1000);
-        } catch (\Throwable $e) {
-        }
-        $this->returnJson(parent::STATUS_OK, '', $result ?? null);
-    }
+```php 
+<?php
+
+require_once __DIR__ . '/vendor/composer/autoload_real.php';
+ComposerAutoloaderInit5b16528999c1beb466aaefe9037c5b65::getLoader();
+try {
+    throw \ZWan\Tool\Mutex\Exceptions\MutexException::ORDER_PREFERENCE_INFO_NOT_FOUND();
+} catch (Exception $exception) {
+    echo $exception->getMessage() . PHP_EOL;
+    echo $exception->getCode();
+}
+```
+

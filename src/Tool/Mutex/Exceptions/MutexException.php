@@ -10,7 +10,7 @@ use ZWan\Exceptions\ZWanException;
  * 异常类目ID:001
  * 异常类目ID:01
  *
- * 错误号范围:0xA001001001-0xA001001FFF
+ * 错误号范围:0xA01001001-0xA01001FFF
  *
  * @exception-text 互斥锁不能为空
  * @method static MutexException MUTEX_PROVIDEDR_CANNOT_BE_EMPTY($codeOrText = 0xA01001001, $text = 'mutex provider cannot be empty')
