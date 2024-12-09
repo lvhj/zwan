@@ -7,5 +7,6 @@ try {
     throw \ZWan\Tool\Redis\Exceptions\RedisException::MUTEX_PROVIDEDR_CANNOT_BE_EMPTY();
 } catch (Exception $e) {
     dd($e);
+    
 }
 
