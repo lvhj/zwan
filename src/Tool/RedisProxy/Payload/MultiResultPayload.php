@@ -28,10 +28,10 @@ class MultiResultPayload
         array_walk($multiRedisQueryParam->keys,
             function ($key, $index) use ($resultList, &$payload, $multiRedisQueryParam) {
                 $result = $resultList[$index];
-                if ($result === false) {
+                if ($result === false || (is_array($result) && empty($result))) {
                     $payload->nonExistentKeys[] = $key;
                 } else {
-                    $payload->result[$key] = !empty($multiRedisQueryParam->jsonArray) ? json_decode($result, 320) : $result;
+                    $payload->result[$key] = $multiRedisQueryParam->getJsonArray() ? json_decode($result, 320) : $result;
                 }
             });
         return $payload;

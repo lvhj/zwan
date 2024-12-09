@@ -7,23 +7,16 @@ try {
     $redis = new \Redis();
     $redis->connect('127.0.0.1', 6379);
     $redis->auth('123456');
+    \ZWan\Tool\Applications\RedisApplication::setRedis($redis); // 将redis连接注入到redisApplication
 
-    $redis->set('key2', json_encode([
-        'id' => 1,
-        'name' => 'name555'
-    ]), 10000);
-
-    // 将redis连接注入到redisApplication
-    \ZWan\Tool\Applications\RedisApplication::setRedis($redis);
-
-    $queryParam = new \ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam();
-    $queryParam->dataType = \ZWan\Tool\RedisProxy\Constants\RedisDataEnum::TYPE_STRING;
-    $queryParam->keys = ['key1', 'key2', 'key4'];
-    $queryParam->jsonArray = true;
-
-    $redisProxy = \ZWan\Tool\RedisProxy\Services\RedisProxy::getRedisProxy();
-    $values = $redisProxy->multiQuery($queryParam);
-    dd($values, 23);
+    $results = \ZWan\Tool\RedisProxy\Services\RedisMultiCommand::execute(function ($pipeline) {
+        $pipeline->set('key1', 'value111');
+        $pipeline->get('key1');
+        $pipeline->set('key2', 'value222');
+        $pipeline->get('key2');
+        $pipeline->setnx('key2', 'value3');
+    });
+    dd($results);
 } catch (Exception $e) {
     dd(123, $e);
 }
