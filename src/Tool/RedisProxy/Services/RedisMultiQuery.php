@@ -9,6 +9,8 @@ use ZWan\Tool\RedisProxy\Payload\MultiResultPayload;
 class RedisMultiQuery
 {
     /**
+     * 批量查询redis -支持 string和 hash 数据类型
+     *
      * @param MultiQueryRedisParam $multiRedisQueryParam
      * @return MultiResultPayload
      */

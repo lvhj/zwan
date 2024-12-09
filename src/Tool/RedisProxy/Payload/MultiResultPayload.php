@@ -7,15 +7,18 @@ use ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam;
 class MultiResultPayload
 {
     /**
+     * 查询结果
+     *
      * @var array[][]
      */
     public $result;
 
     /**
+     * 不存在的keys
+     *
      * @var array
      */
     public $nonExistentKeys;
-
 
     /**
      * @param MultiQueryRedisParam $multiRedisQueryParam

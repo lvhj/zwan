@@ -6,6 +6,12 @@ use ZWan\Tool\Applications\RedisApplication;
 
 class RedisMultiCommand
 {
+    /**
+     * 一次性执行多个redis命令
+     *
+     * @param callable $commandsCallback
+     * @return array
+     */
     public static function execute(callable $commandsCallback): array
     {
         $redis = RedisApplication::getRedis();
