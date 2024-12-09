@@ -29,7 +29,7 @@ class Mutex
      */
     private function __construct(string $lockName)
     {
-        self::$mutexProvider = RedisMutexProvider::class;
+        self::$mutexProvider = RedisMutexProvider::getMutexProvider();
         $this->lockName = $lockName;
     }
 
