@@ -1,8 +1,9 @@
 <?php
 
-namespace ZWan\Tool\Mutex\Provider;
+namespace ZWan\Tool\Mutex\Provider\Impl;
 
 use ZWan\Tool\Applications\RedisApplication;
+use ZWan\Tool\Mutex\Provider\MutexProviderInterface;
 use ZWan\Traits\SingletonTrait;
 
 class RedisMutexProvider implements MutexProviderInterface
