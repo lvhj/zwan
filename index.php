@@ -18,6 +18,6 @@ try {
     });
     dd($results);
 } catch (Exception $e) {
-    dd(123, $e);
+    dd($e);
 }
 
