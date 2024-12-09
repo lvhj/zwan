@@ -2,12 +2,10 @@
 
 namespace ZWan\Tool\Mutex\Provider;
 
-use ZWan\Traits\SingletonTrait;
+use ZWan\Tool\Applications\RedisApplication;
 
 class RedisMutexProvider implements MutexProviderInterface
 {
-    use SingletonTrait;
-
     /**
      * redis实例
      *
@@ -16,30 +14,11 @@ class RedisMutexProvider implements MutexProviderInterface
     private static $redis = null;
 
     /**
-     * @var RedisMutexProvider|null
-     */
-    private static $mutexProvider = null;
-
-    /**
      * 构造函数初始化Redis
      */
-    private function __construct($redis)
+    private function __construct()
     {
-        self::$redis = $redis;
-    }
-
-    /**
-     * 创建 RedisMutexProvider
-     * @param $redis
-     *
-     * @return RedisMutexProvider
-     */
-    public static function getMutexProvider($redis): RedisMutexProvider
-    {
-        if (self::$mutexProvider === null) {
-            self::$mutexProvider = new self($redis);
-        }
-        return self::$mutexProvider;
+        self::$redis = RedisApplication::getRedis();
     }
 
     /**

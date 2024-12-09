@@ -6,7 +6,8 @@
   "require": {
     "php": "^7.1 || ^8.0",
     "ext-json": "*",
-    "doctrine/annotations": "2.0.2"
+    "doctrine/annotations": "2.0.2",
+    "ext-redis": "*"
   },
   "autoload": {
     "files": [
