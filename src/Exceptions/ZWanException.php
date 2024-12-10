@@ -29,7 +29,7 @@ class ZWanException extends \RuntimeException
                         throw new ZWanException("doc: {$line} return name is not equals class {$rClass->getName()}", 500);
                     }
                     $curExceptionMap[$exceptionMethodName] = [
-                        $firstParamName === "codeOrText", intval(substr($exceptionCode, 2), 16), $exceptionText,
+                        $firstParamName === "codeOrText", zwan_hex_convert_code($exceptionCode), $exceptionText,
                     ];
                 }
             }

@@ -63,7 +63,7 @@ class Mutex
                 $this->unlock();
             }
         } else {
-            throw new MutexException("{$this->lockName} lock fail, try it later");
+            throw new MutexException("{$this->lockName} lock fail, try it later", MutexException::LOCK_FAIL_EXCEPTION_CODE);
         }
     }
 

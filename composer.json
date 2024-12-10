@@ -11,7 +11,8 @@
   },
   "autoload": {
     "files": [
-      "src/Helper/helper.php"
+      "src/Helper/helper.php",
+      "src/Helper/exceptionCodeConvertHelper.php"
     ],
     "psr-4": {
       "ZWan\\": "src/"
