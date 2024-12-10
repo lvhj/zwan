@@ -26,7 +26,6 @@ if (!function_exists('ddPrint')) {
                 echo $arg->getMessage() . PHP_EOL;
                 echo $arg->getFile() . '(' . $arg->getLine() . ')' . PHP_EOL;
                 echo $arg->getTraceAsString();
-                exit();
             } elseif (is_array($arg) || is_object($arg)) {
                 echo json_encode($arg, 320);
             } else if (is_string($arg) || is_numeric($arg)) {
