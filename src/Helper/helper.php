@@ -18,10 +18,12 @@ if (!function_exists('ddd')) {
 if (!function_exists('ddPrint')) {
     function ddPrint(...$args)
     {
-        header('Content-type: application/json;charset=utf-8;');
+        $cliModel = php_sapi_name() === 'cli';
+        !$cliModel && header('Content-type: application/json;charset=utf-8;');
+
         foreach ($args as $arg) {
             if ($arg instanceof Throwable) {
-                header('Content-type: application/xml;charset=utf-8;');
+                !$cliModel && header('Content-type: application/xml;charset=utf-8;');
                 echo PHP_EOL;
                 echo $arg->getMessage() . PHP_EOL;
                 echo $arg->getFile() . '(' . $arg->getLine() . ')' . PHP_EOL;
