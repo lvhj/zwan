@@ -49,10 +49,11 @@ class Mutex
      *
      * @param callable $callback 执行的回调函数
      * @param int $expireTime 锁的过期时间，单位秒
+     * @param string|null $exceptionMessage 自定义异常信息
      * @return mixed
      * @throws MutexException|\Throwable
      */
-    public function synchronized(callable $callback, int $expireTime = 600)
+    public function synchronized(callable $callback, int $expireTime = 600, ?string $exceptionMessage = null)
     {
         if ($this->tryLock($expireTime)) {
             try {
@@ -63,7 +64,11 @@ class Mutex
                 $this->unlock();
             }
         } else {
-            throw new MutexException("{$this->lockName} lock fail, try it later", MutexException::LOCK_FAIL_EXCEPTION_CODE);
+            if (is_null($exceptionMessage)) {
+                throw new MutexException("{$this->lockName} lock fail, try it later", MutexException::LOCK_FAIL_EXCEPTION_CODE);
+            } else {
+                throw new MutexException($exceptionMessage, MutexException::LOCK_FAIL_EXCEPTION_CODE);
+            }
         }
     }
 

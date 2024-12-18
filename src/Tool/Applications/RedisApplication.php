@@ -20,8 +20,6 @@ class RedisApplication
     {
         if (self::$redis === null) {
             self::$redis = $redis;
-        } else {
-            throw ApplicationException::REDIS_APPLICATION_HAS_EXISTED();
         }
     }
 
