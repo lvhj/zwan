@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Constants;
+namespace ZWan\Tool\RedisTool\Constants;
 
 class RedisDataEnum
 {

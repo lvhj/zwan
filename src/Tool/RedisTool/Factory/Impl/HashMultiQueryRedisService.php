@@ -1,11 +1,11 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Factory\Impl;
+namespace ZWan\Tool\RedisTool\Factory\Impl;
 
 use ZWan\Tool\Applications\RedisApplication;
-use ZWan\Tool\RedisProxy\Factory\MultiQueryRedisInterface;
-use ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam;
-use ZWan\Tool\RedisProxy\Payload\MultiResultPayload;
+use ZWan\Tool\RedisTool\Factory\MultiQueryRedisInterface;
+use ZWan\Tool\RedisTool\Params\MultiQueryRedisParam;
+use ZWan\Tool\RedisTool\Payload\MultiResultPayload;
 
 class HashMultiQueryRedisService implements MultiQueryRedisInterface
 {

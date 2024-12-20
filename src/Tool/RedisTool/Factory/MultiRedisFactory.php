@@ -1,11 +1,11 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Factory;
+namespace ZWan\Tool\RedisTool\Factory;
 
-use ZWan\Tool\RedisProxy\Constants\RedisDataEnum;
-use ZWan\Tool\RedisProxy\Exceptions\RedisProxyException;
-use ZWan\Tool\RedisProxy\Factory\Impl\HashMultiQueryRedisService;
-use ZWan\Tool\RedisProxy\Factory\Impl\StringMultiQueryRedisService;
+use ZWan\Tool\RedisTool\Constants\RedisDataEnum;
+use ZWan\Tool\RedisTool\Exceptions\RedisProxyException;
+use ZWan\Tool\RedisTool\Factory\Impl\HashMultiQueryRedisService;
+use ZWan\Tool\RedisTool\Factory\Impl\StringMultiQueryRedisService;
 
 class MultiRedisFactory
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Exceptions;
+namespace ZWan\Tool\RedisTool\Exceptions;
 
 use ZWan\Exceptions\ZWanException;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Services;
+namespace ZWan\Tool\RedisTool\Services;
 
-use ZWan\Tool\RedisProxy\Factory\MultiRedisFactory;
-use ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam;
-use ZWan\Tool\RedisProxy\Payload\MultiResultPayload;
+use ZWan\Tool\RedisTool\Factory\MultiRedisFactory;
+use ZWan\Tool\RedisTool\Params\MultiQueryRedisParam;
+use ZWan\Tool\RedisTool\Payload\MultiResultPayload;
 
 class RedisMultiQuery
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Payload;
+namespace ZWan\Tool\RedisTool\Payload;
 
-use ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam;
+use ZWan\Tool\RedisTool\Params\MultiQueryRedisParam;
 
 class MultiResultPayload
 {

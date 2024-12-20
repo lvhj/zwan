@@ -24,12 +24,12 @@ try {
     // 将redis连接注入到redisApplication
     \ZWan\Tool\Applications\RedisApplication::setRedis($redis);
 
-    $queryParam = new \ZWan\Tool\RedisProxy\Params\MultiQueryRedisParam();
-    $queryParam->dataType = \ZWan\Tool\RedisProxy\Constants\RedisDataEnum::TYPE_HASH;
+    $queryParam = new \ZWan\Tool\RedisTool\Params\MultiQueryRedisParam();
+    $queryParam->dataType = \ZWan\Tool\RedisTool\Constants\RedisDataEnum::TYPE_HASH;
     $queryParam->keys = ['key1', 'key2', 'key3'];
     $queryParam->jsonArray = true;
 
-    $values = \ZWan\Tool\RedisProxy\Services\RedisMultiQuery::multiQuery($queryParam);
+    $values = \ZWan\Tool\RedisTool\Services\RedisMultiQuery::multiQuery($queryParam);
     dd($values);
 } catch (Exception $e) {
     dd($e);
@@ -39,7 +39,7 @@ try {
 ### 执行多命令
 
 ```php
-$results = \ZWan\Tool\RedisProxy\Services\RedisPipelineHelper::execute(function ($pipeline) {
+$results = \ZWan\Tool\RedisTool\Services\RedisPipelineHelper::execute(function ($pipeline) {
         $pipeline->set('key1', 'value111');
         $pipeline->get('key1');
         $pipeline->set('key2', 'value222');

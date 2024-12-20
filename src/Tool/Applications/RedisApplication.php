@@ -14,7 +14,7 @@ class RedisApplication
     private static $redis = null;
 
     /**
-     * 设置 RedisProxy 实例
+     * 设置 Redis 实例
      */
     public static function setRedis($redis)
     {
@@ -24,7 +24,7 @@ class RedisApplication
     }
 
     /**
-     * 获取 RedisProxy 实例
+     * 获取 Redis 实例
      */
     public static function getRedis()
     {

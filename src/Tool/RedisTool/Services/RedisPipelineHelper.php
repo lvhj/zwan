@@ -1,6 +1,6 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Services;
+namespace ZWan\Tool\RedisTool\Services;
 
 use ZWan\Tool\Applications\RedisApplication;
 

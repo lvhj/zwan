@@ -1,8 +1,8 @@
 <?php
 
-namespace ZWan\Tool\RedisProxy\Params;
+namespace ZWan\Tool\RedisTool\Params;
 
-use ZWan\Tool\RedisProxy\Constants\RedisDataEnum;
+use ZWan\Tool\RedisTool\Constants\RedisDataEnum;
 
 class MultiQueryRedisParam
 {
