@@ -4,7 +4,7 @@ namespace ZWan\Tool\RedisProxy\Services;
 
 use ZWan\Tool\Applications\RedisApplication;
 
-class RedisMultiCommand
+class RedisPipelineHelper
 {
     /**
      * 一次性执行多个redis命令
@@ -14,8 +14,7 @@ class RedisMultiCommand
      */
     public static function execute(callable $commandsCallback): array
     {
-        $redis = RedisApplication::getRedis();
-        $pipeline = $redis->multi(\Redis::PIPELINE);
+        $pipeline = RedisApplication::getRedis()->multi(\Redis::PIPELINE);
         call_user_func($commandsCallback, $pipeline);
         return $pipeline->exec();
     }

@@ -39,7 +39,7 @@ try {
 ### 执行多命令
 
 ```php
-$results = \ZWan\Tool\RedisProxy\Services\RedisMultiCommand::execute(function ($pipeline) {
+$results = \ZWan\Tool\RedisProxy\Services\RedisPipelineHelper::execute(function ($pipeline) {
         $pipeline->set('key1', 'value111');
         $pipeline->get('key1');
         $pipeline->set('key2', 'value222');
